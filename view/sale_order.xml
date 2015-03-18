@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+		<!-- Update domain filters so that Finalization-state objects show up in the list of quotations -->
+        <record id="sale.action_quotations" model="ir.actions.act_window">
+            <field name="domain">[('state','in',('draft','sent','finalization','cancel'))]</field>
+		</record>
+
+        <record id="sale.action_orders" model="ir.actions.act_window">
+            <field name="domain">[('state','not in',('draft','sent','finalization','cancel'))]</field>
+		</record>
+
+        <record id="sale_form_view_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.view.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>  
+			<field name="arch" type="xml">
+
+				<!-- Update statusbar to show up also in the new state -->
+				<field name="state" position="attributes">
+					<attribute name="statusbar_visible">draft,sent,finalization,invoiced,done</attribute>
+				</field>
+
+				<!-- Append the new workflow button to the header -->
+				<field name="state" position="before">
+	                <button string="Send to finalization" 	type="workflow" name="signal_finalization" states="sent" class="oe_highlight"/>
+				</field>
+
+				<!-- Update cancel, print and email buttons to show up also in the new state -->
+				<button name="cancel" position="attributes">
+					<attribute name="states">draft,sent,finalization</attribute>
+				</button>
+				
+				<xpath expr="(//button[@name='print_quotation'])[2]" position="attributes">
+					<attribute name="states">sent,finalization,progress,manual</attribute>
+				</xpath>
+
+				<xpath expr="(//button[@name='action_quotation_send'])[2]" position="attributes">
+					<attribute name="states">sent,finalization,progress,manual</attribute>
+				</xpath>
+				
+				<!-- Edit the red confirm button to show up in finalization state -->
+                <button name="action_button_confirm" position="replace"/>
+				<button name="action_button_confirm" position="attributes"> 
+					<attribute name="states">finalization</attribute>
+				</button>
+
+
+				<field name="partner_id" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
+				</field>
+
+				<field name="partner_shipping_id" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
+				</field>
+
+				<field name="partner_invoice_id" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
+				</field>
+				
+				<field name="project_id" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
+				</field>
+
+				<field name="date_order" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
+				</field>
+
+				<field name="shop_id" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
+				</field>
+
+				<field name="pricelist_id" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
+				</field>
+				
+				<field name="order_line" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
+				</field>
+
+				<!--
+				<field name="picking_policy" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
+				</field>
+			
+
+				<field name="order_policy" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
+				</field>
+	-->
+
+
+				<!-- 
+
+
+				<field name="client_order_ref" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+
+				<field name="delivery_time" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+
+				<field name="customer_order_number" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+
+				<field name="delivery_term_id" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+
+				<field name="delivery_place" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+
+				<field name="alt_delivery_term" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+
+				<field name="payment_term" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+
+				<field name="alt_payment_term" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+
+				<field name="delivery_place" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+
+				<field name="note" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+
+				<field name="user_id" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+
+				<field name="technical_contact" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+				<field name="warranty" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+				<field name="general_conditions" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+				<field name="transportation_term_id" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
+				</field>
+
+
+				<field name="order_line" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','in_finalization'))]}</attribute>
+				</field>
+
+				<field name="picking_policy" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','in_finalization'))]}</attribute>
+				</field>
+
+				<field name="order_policy" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','in_finalization'))]}</attribute>
+				</field>
+
+				<field name="fiscal_position" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','in_finalization'))]}</attribute>
+				</field>
+				-->
+
+
+            </field>
+        </record>
+
+    </data>
+</openerp>
+

@@ -1,0 +1,60 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_order_finalization_state
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-18 17:57+0000\n"
+"PO-Revision-Date: 2015-03-18 17:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_finalization_state
+#: code:addons/sale_order_finalization_state/sale_order.py:10
+#, python-format
+msgid "Finalization Phase"
+msgstr "Viimeistelyssä"
+
+#. module: sale_order_finalization_state
+#: code:_description:0
+#: model:ir.model,name:sale_order_finalization_state.model_sale_order
+#, python-format
+msgid "Sales Order"
+msgstr "Myyntitilaus"
+
+#. module: sale_order_finalization_state
+#: view:sale.order:0
+msgid "Send to finalization"
+msgstr "Viimeistelyyn"
+
+#. module: sale_order_finalization_state
+#: view:sale.order:0
+msgid "draft,sent,finalization"
+msgstr "draft,sent,finalization"
+
+#. module: sale_order_finalization_state
+#: view:sale.order:0
+msgid "draft,sent,finalization,invoiced,done"
+msgstr "draft,sent,finalization,invoiced,done"
+
+#. module: sale_order_finalization_state
+#: view:sale.order:0
+msgid "finalization"
+msgstr "finalization"
+
+#. module: sale_order_finalization_state
+#: view:sale.order:0
+msgid "sent,finalization,progress,manual"
+msgstr "sent,finalization,progress,manual"
+
+#. module: sale_order_finalization_state
+#: view:sale.order:0
+msgid "{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}"
+msgstr "{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}"
+
