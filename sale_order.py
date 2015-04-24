@@ -2,23 +2,19 @@
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 
-
 class sale_order(osv.Model):
 
     _inherit = 'sale.order'
     
-    fin_str = _('Finalization Phase')
-    
-    ''' When quotation is about to be set to "In finalization" '''
     def action_finalization(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'finalization' }, context=context)
 
-    ''' Add new state '''
+    ''' Add new state to the list '''
     _columns = {
         'state': fields.selection([
             ('draft', 'Draft Quotation'),
             ('sent', 'Quotation Sent'),
-            ('finalization', fin_str),
+            ('finalization', _('Finalization Phase')),
             ('cancel', 'Cancelled'),
             ('waiting_date', 'Waiting Schedule'),
             ('progress', 'Sales Order'),

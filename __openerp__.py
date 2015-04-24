@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#   Copyright (c) 2013- Vizucom Oy (http://www.vizucom.com)
+#   Copyright (c) 2015- Vizucom Oy (http://www.vizucom.com)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,7 +15,7 @@
 {
     'name': 'Finalization state for Sale Orders',
     'category': 'Sales',
-    'version': '0.2',
+    'version': '1.0',
     'author': 'Vizucom Oy',
     'website': 'http://www.vizucom.com',
     'depends': ['sale_stock'],
@@ -23,8 +23,7 @@
 Finalization state for Sale Orders
 ==================================
  * Adds a new state, 'Finalization', between Quotation Sent and Sale Order
- * Intended for situations where the Quotations needs changes before it gets converted to Sale Order (e.g. the customer approves the quote but with slight changes). 
- * NOTE: Depends on sale_stock so that the sale order states do not get overridden by it
+ * Intended for situations where the Quotations needs changes before it gets converted to Sale Order (e.g. the customer approves the quote but with slight changes).
 
 """,
     'data': [

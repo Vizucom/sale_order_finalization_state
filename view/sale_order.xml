@@ -46,7 +46,7 @@
 					<attribute name="states">finalization</attribute>
 				</button>
 
-
+                <!-- Update the readonly modifiers for fields -->
 				<field name="partner_id" position="attributes">
 					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
 				</field>
@@ -78,97 +78,6 @@
 				<field name="order_line" position="attributes">
 					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
 				</field>
-
-				<!--
-				<field name="picking_policy" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
-				</field>
-			
-
-				<field name="order_policy" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
-				</field>
-	-->
-
-
-				<!-- 
-
-
-				<field name="client_order_ref" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-
-				<field name="delivery_time" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-
-				<field name="customer_order_number" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-
-				<field name="delivery_term_id" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-
-				<field name="delivery_place" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-
-				<field name="alt_delivery_term" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-
-				<field name="payment_term" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-
-				<field name="alt_payment_term" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-
-				<field name="delivery_place" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-
-				<field name="note" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-
-				<field name="user_id" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-
-				<field name="technical_contact" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-				<field name="warranty" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-				<field name="general_conditions" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-				<field name="transportation_term_id" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'in', ('cancel','archived','lost'))]}</attribute>
-				</field>
-
-
-				<field name="order_line" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','in_finalization'))]}</attribute>
-				</field>
-
-				<field name="picking_policy" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','in_finalization'))]}</attribute>
-				</field>
-
-				<field name="order_policy" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','in_finalization'))]}</attribute>
-				</field>
-
-				<field name="fiscal_position" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','in_finalization'))]}</attribute>
-				</field>
-				-->
-
 
             </field>
         </record>

@@ -1,26 +1,6 @@
 <?xml version="1.0" ?>
-
 <openerp>
     <data>
-		<!-- Overriding the workflow activities -->
-		
-<!--
-        <record id="sale.act_draft" model="workflow.activity">
-			<field name="kind">function</field>
-			<field name="action">action_draft()</field>
-		</record>
-		
-        <record id="sale.act_sent" model="workflow.activity">
-			<field name="kind">function</field>
-			<field name="action">action_sent()</field>		            
-		</record>
--->	
-		<!--
-        <record id="sale.act_done" model="workflow.activity">
-			<field name="action">action_done()</field>		            
-		</record>	
-		-->
-
 		<!-- Create new activity for the new state -->
         <record id="act_finalization" model="workflow.activity">
             <field name="wkf_id" ref="sale.wkf_sale"/>
@@ -29,50 +9,12 @@
             <field name="action">action_finalization()</field>
         </record>
 
-		<!-- Create transitions -->
-
-		<!-- From draft to finalization -->
-		<!--
-        <record id="trans_draft_in_finalization" model="workflow.transition">
-            <field name="act_from" ref="sale.act_draft"/>
-            <field name="act_to" ref="act_in_finalization"/>
-            <field name="signal">signal_in_finalization</field>
-        </record>
-		-->
-
 		<!-- From sent to finalization -->
         <record id="trans_sent_in_finalization" model="workflow.transition">
             <field name="act_from" ref="sale.act_sent"/>
             <field name="act_to" ref="act_finalization"/>
             <field name="signal">signal_finalization</field>
         </record>
-
-
-		<!-- From sent back to draft -->
-		<!--
-        <record id="trans_sent_draft" model="workflow.transition">
-            <field name="act_from" ref="sale.act_sent"/>
-            <field name="act_to" ref="sale.act_draft"/>
-            <field name="signal">signal_draft</field>
-        </record>
-		-->
-
-		<!-- From finalization back to draft-->
-		<!--
-        <record id="trans_in_finalization_draft" model="workflow.transition">
-            <field name="act_from" ref="act_in_finalization"/>
-            <field name="act_to" ref="sale.act_draft"/>
-            <field name="signal">signal_draft</field>
-        </record>
-		-->
-		<!-- From finalization back to draft-->
-		<!--
-        <record id="trans_in_finalization_draft" model="workflow.transition">
-            <field name="act_from" ref="act_in_finalization"/>
-            <field name="act_to" ref="sale.act_draft"/>
-            <field name="signal">signal_draft</field>
-        </record>
-		-->
 
 		<!-- From finalization to cancel -->
         <record id="trans_finalization_cancel" model="workflow.transition">
@@ -81,12 +23,11 @@
             <field name="signal">cancel</field>
         </record>
 
-		<!-- From finalization to done (via routing) -->
+		<!-- From finalization to router -->
         <record id="trans_finalization_router" model="workflow.transition">
             <field name="act_from" ref="act_finalization"/>
             <field name="act_to" ref="sale.act_router"/>
             <field name="signal">order_confirm</field>
         </record>
-
     </data>
 </openerp>
