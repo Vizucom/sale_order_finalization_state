@@ -14,7 +14,7 @@
         <record id="sale_form_view_inherit" model="ir.ui.view">
             <field name="name">sale.order.form.view.inherit</field>
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>  
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>  
 			<field name="arch" type="xml">
 
 				<!-- Update statusbar to show up also in the new state -->
@@ -24,7 +24,8 @@
 
 				<!-- Append the new workflow button to the header -->
 				<field name="state" position="before">
-	                <button string="Send to finalization" 	type="workflow" name="signal_finalization" states="sent" class="oe_highlight"/>
+	                <button string="Send to finalization" 	type="workflow" 
+	                       name="signal_finalization" states="sent" class="oe_highlight"/>
 				</field>
 
 				<!-- Update cancel, print and email buttons to show up also in the new state -->
@@ -67,14 +68,18 @@
 					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
 				</field>
 
-				<field name="shop_id" position="attributes">
-					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
-				</field>
-
 				<field name="pricelist_id" position="attributes">
 					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
 				</field>
-				
+
+                <field name="payment_term" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
+                </field>
+                
+                <field name="fiscal_position" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
+                </field>
+                				
 				<field name="order_line" position="attributes">
 					<attribute name="attrs">{'readonly': [('state', 'not in', ('draft','sent','finalization'))]}</attribute>
 				</field>
