@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+		<record id="sale_report_filter_inherit" model="ir.ui.view">
+			<field name="name">sale.report.filter.inherit</field>
+			<field name="model">sale.report</field>
+			<field name="inherit_id" ref="sale.view_order_product_search"/>
+			<field name="arch" type="xml">
+				<!-- Change the domain to work with the new state -->
+				<filter name="Sales" position="attributes">
+					<attribute name="domain">[('state','not in',('draft','sent','finalization','cancel'))]</attribute>
+				</filter>
+                <filter name="Quotations" position="attributes">
+                    <attribute name="domain">[('state','in',('draft','sent','finalization'))]</attribute>
+                </filter>				
+			</field>
+		</record>
+    </data>
+</openerp>
