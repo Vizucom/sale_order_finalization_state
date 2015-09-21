@@ -28,7 +28,6 @@ Finalization state for Sale Orders
 """,
     'data': [
         'view/sale_order.xml',
-        'view/sale_report.xml',
         'workflow/sale_order_workflow.xml',
     ],
 
