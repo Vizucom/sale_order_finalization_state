@@ -17,6 +17,15 @@
             <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>  
 			<field name="arch" type="xml">
 
+                <!-- Update the labels -->    
+                <label string="Quotation " position="attributes">
+                    <attribute name="attrs">{'invisible': [('state','not in',('draft','sent','finalization'))]}</attribute>
+                </label>
+                 
+                <label string="Sales Order " position="attributes">
+                    <attribute name="attrs">{'invisible': [('state','in',('draft','sent','finalization'))]}</attribute>
+                </label>                                        
+
 				<!-- Update statusbar to show up also in the new state -->
 				<field name="state" position="attributes">
 					<attribute name="statusbar_visible">draft,sent,finalization,invoiced,done</attribute>
