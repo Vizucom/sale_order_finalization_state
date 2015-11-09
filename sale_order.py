@@ -5,7 +5,7 @@ from openerp.tools.translate import _
 class sale_order(osv.Model):
 
     _inherit = 'sale.order'
-    
+
     def action_finalization(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'finalization' }, context=context)
 
@@ -19,6 +19,7 @@ class sale_order(osv.Model):
             ('waiting_date', 'Waiting Schedule'),
             ('progress', 'Sales Order'),
             ('manual', 'Sale to Invoice'),
+            ('shipping_except', 'Shipping Exception'),
             ('invoice_except', 'Invoice Exception'),
             ('done', 'Done'),
             ], 'Status', readonly=True, track_visibility='onchange',
